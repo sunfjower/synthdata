@@ -1,0 +1,60 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
+using MultipleDataGenerator.Services;
+using Newtonsoft.Json;
+
+namespace MultipleDataGenerator.Controllers
+{
+    public class GeneratorController : BaseController
+    {
+        private readonly DataGeneratorService _dataGeneratorService;
+
+        public GeneratorController(DataGeneratorService dataGeneratorService) 
+        {
+            _dataGeneratorService = dataGeneratorService;
+        }
+
+        public IActionResult Preset() 
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GetAll(string names, string types, string format)
+        {
+            /* TEMPORARY: list for query 
+            var fieldTypes = new List<string> { "Name", "Name" };
+            var fieldNames = new List<string> { "Title Name", "Title Name2" };*/
+
+            var fieldNames = names.Split(',').ToList();
+            var fieldTypes = types.Split(',').ToList();
+
+            //  TODO: Reprocess funtion
+            for (int i = 0; i < fieldNames.Count; i++)
+            {
+                fieldNames[i] = fieldNames[i].Replace(" ", "_");
+            }
+
+            var data = await _dataGeneratorService.GetAsync(fieldNames, fieldTypes);
+
+            //  TODO: If data null "Return message for user about nulleble data."
+            var result = data.ConvertAll(BsonTypeMapper.MapToDotNetValue);
+
+            result = ShuffleList(result);
+
+            var jsonResult = JsonConvert.SerializeObject(result, Formatting.Indented);
+
+            switch (format)
+            {
+                case "CSV":
+                    return CsvDownload(jsonResult);
+                case "Excel":
+                    return XlsxDownload(jsonResult);
+                case "JSON":
+                    return JsonDownload(jsonResult);
+                default:
+                    return CsvDownload(jsonResult);
+            }
+        }
+    }
+}

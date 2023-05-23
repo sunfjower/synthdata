@@ -1,0 +1,272 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+body {
+    background-color: #110B13;
+}
+
+li, a {
+    text-decoration: none;
+    list-style: none;
+}
+
+/*NAVBAR*/
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1px 10%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+}
+
+.logo {
+    cursor: pointer;
+    margin-right: auto;
+    width: 70px;
+    height: 70px;
+}
+
+.nav_links li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.nav_links a {
+    color: #E5CBFF;
+    font-size: 1.6rem;
+    font-weight: 300;
+    font-size: 24px;
+    transition: all 0.3s ease 0s;
+}
+
+.nav_links li a:hover {
+        color: #F5EBFF;
+    }
+
+.toggle_btn {
+    color: #E5CBFF;
+    font-size: 1.6rem;
+    cursor: pointer;
+    display: none;
+}
+
+.toggle_btn:hover {
+        color: #F5EBFF;
+    }
+
+/*DROPDOWN MENU*/
+
+.dropdown_menu {
+    display: none;
+    position: absolute;
+    top: 120px;
+    height: 0px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: height .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dropdown_menu.open {
+    height: 485px;
+}
+
+.dropdown_menu li {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown_menu li:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown_menu a {
+    color: #E5CBFF;
+    font-size: 1.6rem;
+    transition: all 0.3s ease 0s;
+}
+
+.dropdown_menu a:hover {
+    color: #F5EBFF;
+}
+
+/*HOME PAGE CONTENT*/
+
+section#homepage_content {
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #E5CBFF;
+}
+
+#homepage_content {
+    font-size: 3rem;
+    /*margin-bottom: 10rem;*/
+}
+
+.start_btn {
+    background-color: #393340;
+    color: #FFFFFF;
+    padding: 1.5rem 2.5rem;
+    border: none;
+    outline: none;
+    display: inline-block;
+    border-radius: 55px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 80px;
+    /*margin: 0 auto;*/
+}
+
+.start_btn:hover {
+    transform: scale(1.03);
+}
+
+.start_btn:active {
+    transform: scale(0.95);
+}
+
+/*PRESET PAGE CONTENT*/
+
+section#presetpage_content {
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    color: #E5CBFF;
+    margin-top: 60px;
+    padding-top: 50px;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-bottom: 50px;
+    background-color: #1E1B1F;
+    border-radius: 20px;
+}
+
+.generate_btn {
+    background-color: #393340;
+    color: #FFFFFF;
+    padding: 1rem 1.2rem;
+    border: none;
+    outline: none;
+    display: inline-block;
+    border-radius: 55px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.generate_btn:hover {
+    transform: scale(1.03);
+}
+
+.generate_btn:active {
+    transform: scale(0.95);
+}
+
+input {
+    border: none;
+    padding: 12px;
+    appearance: none;
+    width: 300px;
+    outline: none;
+    background: #393340;
+    color: #F5EBFF;
+    font-weight: 400;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+input:focus {
+    border: 2px solid #F5EBFF;
+    transition-delay: 2s;
+}
+
+input:focus::placeholder {
+    color: transparent;
+}
+
+select {
+    border: none;
+    padding: 12px;
+    appearance: none;
+    width: 300px;
+    outline: none;
+    background: #393340;
+    color: #F5EBFF;
+    font-weight: 400;
+    font-size: 1rem;
+    margin-left: 2px;
+    border-radius: 5px;
+}
+
+.add_btn {
+    background-color: #74B389;
+    color: #393340;
+    padding: 0.8rem 1rem;
+    border: none;
+    outline: none;
+    display: inline-block;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 2px;
+}
+
+.add_btn:hover {
+    background-color: #85CC9B;
+}
+
+.remove_btn {
+    background-color: #B37674;
+    color: #393340;
+    padding: 0.8rem 1rem;
+    border: none;
+    outline: none;
+    display: inline-block;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 1px;
+}
+
+.remove_btn:hover {
+    background-color: #CC8785;
+}
+
+/*RESPONSIVE DESIGN*/
+@media (max-width: 992px) {
+    .nav_links {
+        display: none;
+    }
+
+    .toggle_btn {
+        display: block;
+    }
+
+    .dropdown_menu {
+        display: block;
+        width: 80%;
+    }
+}
+
+

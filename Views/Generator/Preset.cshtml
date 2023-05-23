@@ -1,0 +1,42 @@
+﻿@page
+
+<section id="presetpage_content">
+    <div class="container">
+        <div>
+            <table id="configurationTable">
+                <thead>
+                    <tr>
+                        <th>Field Name</th>
+                        <th>Field Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input name="fieldName" placeholder="Your field name" required></td>
+                        <td>
+                            <select name="fieldType"></select>
+                        </td>
+                        <td>
+                            <button class="add_btn" onclick="addTableField(this)">Add</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="">
+            <label>Total Rows</label>
+            <input required>
+
+            <label>Format</label>
+            <select name="fileFormat">
+                <option>Excel</option>
+                <option>JSON</option>
+                <option>CSV</option>
+            </select>
+        </div>
+
+        <div>
+            <button id="generate" class="generate_btn" onclick="requestDataGeneration(this)">Generate</button>
+        </div>
+    </div>
+</section>
