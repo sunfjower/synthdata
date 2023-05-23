@@ -9,11 +9,6 @@ body {
     background-color: #110B13;
 }
 
-li, a {
-    text-decoration: none;
-    list-style: none;
-}
-
 /*NAVBAR*/
 
 header {
@@ -35,6 +30,8 @@ header {
 .nav_links li {
     display: inline-block;
     padding: 0px 20px;
+    list-style: none;
+    text-decoration: none;
 }
 
 .nav_links a {
@@ -43,6 +40,8 @@ header {
     font-weight: 300;
     font-size: 24px;
     transition: all 0.3s ease 0s;
+    list-style: none;
+    text-decoration: none;
 }
 
 .nav_links li a:hover {
@@ -102,7 +101,7 @@ header {
 /*HOME PAGE CONTENT*/
 
 section#homepage_content {
-    height: calc(100vh - 60px);
+    Height: calc(100vh - 60px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -113,7 +112,6 @@ section#homepage_content {
 
 #homepage_content {
     font-size: 3rem;
-    /*margin-bottom: 10rem;*/
 }
 
 .start_btn {
@@ -148,15 +146,16 @@ section#presetpage_content {
     align-items: center;
 }
 
-.container {
+.presetpage_container {
     color: #E5CBFF;
     margin-top: 60px;
     padding-top: 50px;
     padding-right: 50px;
-    padding-left: 50px;
+    padding-left: 65px;
     padding-bottom: 50px;
     background-color: #1E1B1F;
     border-radius: 20px;
+    width: 900px;
 }
 
 .generate_btn {
@@ -251,6 +250,39 @@ select {
 
 .remove_btn:hover {
     background-color: #CC8785;
+}
+
+/*ABOUT PAGE CONTENT*/
+
+section#aboutpage_content {
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.aboutpage_container {
+    color: #E5CBFF;
+    margin-top: 60px;
+    padding-top: 50px;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-bottom: 50px;
+    background-color: #1E1B1F;
+    border-radius: 20px;
+    font-size: 1.3rem;
+    width: 1100px;
+    font-weight: 300;
+}
+
+.aboutpage_container h2 {
+    margin-top: 20px;
+
+}
+
+.aboutpage_container ol, p {
+    margin-top: 2px;
+    padding-left: 40px;
 }
 
 /*RESPONSIVE DESIGN*/
