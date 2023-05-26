@@ -1,0 +1,37 @@
+﻿section#homepage_content {
+    Height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #E5CBFF;
+}
+
+#homepage_content {
+    font-size: 3rem;
+}
+
+.start_btn {
+    background-color: #393340;
+    color: #FFFFFF;
+    padding: 1.5rem 2.5rem;
+    border: none;
+    outline: none;
+    display: inline-block;
+    border-radius: 55px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 80px;
+    list-style: none;
+    text-decoration: none;
+}
+
+    .start_btn:hover {
+        transform: scale(1.03);
+    }
+
+    .start_btn:active {
+        transform: scale(0.95);
+    }
