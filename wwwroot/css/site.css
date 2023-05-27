@@ -9,6 +9,10 @@ body {
     background-color: #110B13;
 }
 
+main {
+    margin-top: 77px;
+}
+
 /*SCROLL BAR*/
 
 ::-webkit-scrollbar {
@@ -32,24 +36,29 @@ body {
 /*NAVBAR*/
 
 header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 1px 10%;
+    padding: 1px 8%;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(15px);
 }
         
 .logo {
+    margin-right: 10px;
     cursor: pointer;
     margin-right: auto;
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 75px;
 }
 
 .nav_links li {
     display: inline-block;
-    padding: 0px 20px;
+    padding: 0px 14px;
     list-style: none;
     text-decoration: none;
 }
