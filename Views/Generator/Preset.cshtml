@@ -2,6 +2,7 @@
 
 <section id="presetpage_content">
     <div class="presetpage_container">
+        <p>Mock Data Generator</p>
         <table id="configurationTable">
             <thead>
                 <tr>
@@ -17,6 +18,18 @@
                     </td>
                     <td>
                         <button class="add_btn" onclick="addTableField(this)">Add</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input name="fieldName" placeholder="Your field name" required></td>
+                    <td>
+                        <select name="fieldType"></select>
+                    </td>
+                    <td>
+                        <button class="add_btn" onclick="addTableField(this)">Add</button>
+                    </td>
+                    <td>
+                        <button class="remove_btn" onclick="removeTableField(this)">Remove</button>
                     </td>
                 </tr>
             </tbody>

@@ -8,7 +8,7 @@
 .presetpage_container {
     color: #E5CBFF;
     margin-top: 60px;
-    padding-top: 50px;
+    padding-top: 30px;
     padding-right: 50px;
     padding-left: 65px;
     padding-bottom: 50px;
@@ -19,13 +19,21 @@
     width: 900px;
 }
 
+.presetpage_container p {
+    font-size: 1.4rem;
+}
+
 table th {
     text-align: start;
     padding: 2px;
     font-weight: 400;
-    font-size: 1.2rem;
+    font-size: 1.12rem;
     text-transform: uppercase;
     letter-spacing: 0.3px;
+}
+
+table#configurationTable {
+    padding-top: 50px;
 }
 
 table#extraparamsTable {
@@ -47,7 +55,7 @@ input {
 
 input:focus {
     border: 2px solid #F5EBFF;
-    transition-delay: 2s;
+    transition-delay: 0.1s;
 }
 
 input:focus::placeholder {
@@ -66,6 +74,15 @@ select {
     font-size: 1rem;
     margin-left: 2px;
     border-radius: 5px;
+}
+
+select:focus {
+    border: 2px solid #F5EBFF;
+    transition-delay: 0.1s;
+}
+
+select:focus::placeholder {
+    color: transparent;
 }
 
 /*BUTTONS*/
@@ -110,6 +127,10 @@ select {
     background-color: #85CC9B;
 }
 
+.add_btn:focus {
+    background-color: #85CC9B;
+}
+
 .remove_btn {
     background-color: #B37674;
     color: #393340;
@@ -122,6 +143,10 @@ select {
     font-weight: bold;
     cursor: pointer;
     margin-left: 1px;
+}
+
+.remove_btn:focus {
+    background-color: #CC8785;
 }
 
 .remove_btn:hover {
