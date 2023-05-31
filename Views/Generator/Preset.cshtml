@@ -2,38 +2,46 @@
 
 <section id="presetpage_content">
     <div class="presetpage_container">
-        <div>
-            <table id="configurationTable">
-                <thead>
-                    <tr>
-                        <th>Field Name</th>
-                        <th>Field Type</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><input name="fieldName" placeholder="Your field name" required></td>
-                        <td>
-                            <select name="fieldType"></select>
-                        </td>
-                        <td>
-                            <button class="add_btn" onclick="addTableField(this)">Add</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="">
-            <label>Total Rows</label>
-            <input required>
+        <table id="configurationTable">
+            <thead>
+                <tr>
+                    <th>Field Name</th>
+                    <th>Field Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input name="fieldName" placeholder="Your field name" required></td>
+                    <td>
+                        <select name="fieldType"></select>
+                    </td>
+                    <td>
+                        <button class="add_btn" onclick="addTableField(this)">Add</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-            <label>Format</label>
-            <select name="fileFormat">
-                <option>Excel</option>
-                <option>JSON</option>
-                <option>CSV</option>
-            </select>
-        </div>
+        <table id="extraparamsTable">
+            <thead>
+                <tr>
+                    <th>Total Rows</th>
+                    <th>Output format</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input required></td>
+                    <td>
+                        <select name="fileFormat">
+                            <option>Excel</option>
+                            <option>JSON</option>
+                            <option>CSV</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
         <div>
             <button id="generate" class="generate_btn" onclick="requestDataGeneration(this)">Generate</button>

@@ -12,32 +12,25 @@
     padding-right: 50px;
     padding-left: 65px;
     padding-bottom: 50px;
+    align-items: center;
+    text-align: center;
     background-color: #1E1B1F;
     border-radius: 20px;
     width: 900px;
 }
 
-.generate_btn {
-    background-color: #393340;
-    color: #FFFFFF;
-    padding: 1rem 1.2rem;
-    border: none;
-    outline: none;
-    display: inline-block;
-    border-radius: 55px;
-    font-size: 1.6rem;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 20px;
+table th {
+    text-align: start;
+    padding: 2px;
+    font-weight: 400;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
 }
 
-    .generate_btn:hover {
-        transform: scale(1.03);
-    }
-
-    .generate_btn:active {
-        transform: scale(0.95);
-    }
+table#extraparamsTable {
+    padding-top: 20px;
+}
 
 input {
     border: none;
@@ -52,14 +45,14 @@ input {
     border-radius: 5px;
 }
 
-    input:focus {
-        border: 2px solid #F5EBFF;
-        transition-delay: 2s;
-    }
+input:focus {
+    border: 2px solid #F5EBFF;
+    transition-delay: 2s;
+}
 
-        input:focus::placeholder {
-            color: transparent;
-        }
+input:focus::placeholder {
+    color: transparent;
+}
 
 select {
     border: none;
@@ -73,6 +66,30 @@ select {
     font-size: 1rem;
     margin-left: 2px;
     border-radius: 5px;
+}
+
+/*BUTTONS*/
+
+.generate_btn {
+    background-color: #393340;
+    color: #FFFFFF;
+    padding: 1.2rem 2rem;
+    border: none;
+    outline: none;
+    display: inline-block;
+    border-radius: 55px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 40px;
+}
+
+.generate_btn:hover {
+    transform: scale(1.03);
+}
+
+.generate_btn:active {
+    transform: scale(0.95);
 }
 
 .add_btn {
@@ -89,9 +106,9 @@ select {
     margin-left: 2px;
 }
 
-    .add_btn:hover {
-        background-color: #85CC9B;
-    }
+.add_btn:hover {
+    background-color: #85CC9B;
+}
 
 .remove_btn {
     background-color: #B37674;
@@ -107,6 +124,6 @@ select {
     margin-left: 1px;
 }
 
-    .remove_btn:hover {
-        background-color: #CC8785;
-    }
+.remove_btn:hover {
+    background-color: #CC8785;
+}

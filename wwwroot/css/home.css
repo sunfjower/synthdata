@@ -29,10 +29,10 @@
     text-decoration: none;
 }
 
-    .start_btn:hover {
-        transform: scale(1.03);
-    }
+.start_btn:hover {
+    transform: scale(1.03);
+}
 
-    .start_btn:active {
-        transform: scale(0.95);
-    }
+.start_btn:active {
+    transform: scale(0.95);
+}
