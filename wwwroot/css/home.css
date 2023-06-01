@@ -1,5 +1,5 @@
 ﻿section#homepage_content {
-    Height: calc(100vh - 60px);
+    height: calc(100vh - 100px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,6 +11,10 @@
 #homepage_content {
     font-size: 3rem;
     cursor: default;
+}
+
+#homepage_content h1 {
+    padding: 20px;
 }
 
 .start_btn {
@@ -35,4 +39,30 @@
 
 .start_btn:active {
     transform: scale(0.95);
+}
+
+/*RESPONSIVE DESIGN*/
+
+
+@media (max-width: 720px) {
+    #homepage_content {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 380px) {
+    #homepage_content {
+        font-size: 1.7rem;
+    }
+}
+
+@media (max-width: 290px) {
+    #homepage_content {
+        font-size: 1.5rem;
+    }
+
+    .start_btn {
+        padding: 1.1rem 2.1rem;
+        font-size: 1.1rem;
+    }
 }
