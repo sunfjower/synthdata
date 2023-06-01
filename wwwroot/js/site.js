@@ -70,6 +70,8 @@ function addTableField(element) {
     let select = document.createElement("select");
     let addButton = document.createElement("button");
     let removeButton = document.createElement("button");
+    let addSpan = document.createElement("span");
+    let removeSpan = document.createElement("span");
     let firstCell = newRow.insertCell(0);
     let secondCell = newRow.insertCell(1);
     let thirdCell = newRow.insertCell(2);
@@ -81,12 +83,14 @@ function addTableField(element) {
     input.placeholder = "Your field name";
     //New field
     input.name = "fieldName";
-    addButton.innerHTML = "Add";
+    addSpan.innerHTML = "Add";
+    addButton.append(addSpan);
     addButton.classList += "add_btn";
     addButton.onclick = function () {
         addTableField(this);
     };
-    removeButton.innerHTML = "Remove";
+    removeSpan.innerHTML = "Remove";
+    removeButton.append(removeSpan);
     removeButton.classList += "remove_btn";
     removeButton.onclick = function () {
         removeTableField(this);

@@ -3,7 +3,7 @@
     let fieldTypeArray = [];
     let inputs = document.getElementsByName("fieldName");
     let selects = document.getElementsByName("fieldType");
-    let fileFormat = document.getElementsByName("fileFormat");
+    let fileFormat = document.getElementById("fileFormat");
 
 
     for (i = 0; i < inputs.length; i++) {
