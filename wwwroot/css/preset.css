@@ -7,7 +7,7 @@
 
 .presetpage_container {
     color: #E5CBFF;
-    margin-top: 60px;
+   margin-top: 60px;
     padding-top: 30px;
     padding-right: 50px;
     padding-left: 65px;
@@ -151,4 +151,170 @@ select:focus::placeholder {
 
 .remove_btn:hover {
     background-color: #CC8785;
+}
+
+/*RESPOSIVE DESIGN*/
+
+@media (max-width: 920px) {
+    .presetpage_container {
+        width: 800px;
+        padding-right: 30px;
+        padding-left: 30px;
+    }
+
+    input {
+        width: 280px;
+    }
+
+    select {
+        width: 280px;
+    }
+}
+
+@media (max-width: 820px) {
+    .presetpage_container {
+        width: 700px;
+        padding-right: 30px;
+        padding-left: 30px;
+    }
+
+    input {
+        width: 230px;
+    }
+
+    select {
+        width: 230px;
+    }
+}
+
+@media (max-width: 720px) {
+    .presetpage_container {
+        width: 600px;
+ 
+    }
+    input {
+        width: 190px;
+    }
+
+    select {
+        width: 190px;
+    }
+}
+
+@media (max-width: 620px) {
+    .presetpage_container {
+        width: 500px;
+    }
+
+    input {
+        width: 175px;
+    }
+
+    select {
+        width: 175px;
+    }
+
+    .add_btn span {
+        display: none;
+    }
+
+    .add_btn:after {
+        content: '+';
+    }
+
+    .remove_btn span {
+        display: none;
+    }
+
+    .remove_btn:after {
+        content: '-';
+    }
+
+    input#totalRows {
+        width: 218px;
+    }
+
+    select#fileFormat {
+        width: 218px;
+    }
+}
+
+@media (max-width: 520px) {
+    .presetpage_container {
+        width: 400px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    table th {
+        font-size: 0.9rem;
+    }
+
+    input {
+        width: 140px;
+        font-size: 0.9rem;
+    }
+
+    select {
+        width: 140px;
+        font-size: 0.9rem;
+    }
+
+    .add_btn {
+        font-size: 0.9rem;
+    }
+
+    .remove_btn {
+        font-size: 0.9rem;
+    }
+
+    input#totalRows {
+        width: 181px;
+    }
+
+    select#fileFormat {
+        width: 181px;
+    }
+}
+
+@media (max-width: 420px) {
+    .presetpage_container {
+        width: 340px;
+    }
+
+    table th {
+        font-size: 0.74rem;
+    }
+
+    input {
+        width: 112px;
+        font-size: 0.74rem;
+    }
+
+    select {
+        width: 112px;
+        font-size: 0.74rem;
+    }
+
+    .add_btn {
+        font-size: 0.74rem;
+    }
+
+    .remove_btn {
+        font-size: 0.74rem;
+    }
+
+    input#totalRows {
+        width: 152px;
+    }
+
+    select#fileFormat {
+        width: 152px;
+    }
+}
+
+@media (max-width: 320px) {
+    .presetpage_container {
+        width: 300px;
+    }
 }

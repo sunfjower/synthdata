@@ -17,7 +17,7 @@
                         <select name="fieldType"></select>
                     </td>
                     <td>
-                        <button class="add_btn" onclick="addTableField(this)">Add</button>
+                        <button class="add_btn" onclick="addTableField(this)"><span>Add</span></button>
                     </td>
                 </tr>
                 <tr>
@@ -26,10 +26,10 @@
                         <select name="fieldType"></select>
                     </td>
                     <td>
-                        <button class="add_btn" onclick="addTableField(this)">Add</button>
+                        <button class="add_btn" onclick="addTableField(this)"><span>Add</span></button>
                     </td>
                     <td>
-                        <button class="remove_btn" onclick="removeTableField(this)">Remove</button>
+                        <button class="remove_btn" onclick="removeTableField(this)"><span>Remove</span></button>
                     </td>
                 </tr>
             </tbody>
@@ -44,9 +44,9 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><input required></td>
+                    <td><input id="totalRows" required></td>
                     <td>
-                        <select name="fileFormat">
+                        <select id="fileFormat">
                             <option>Excel</option>
                             <option>JSON</option>
                             <option>CSV</option>
