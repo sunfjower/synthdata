@@ -17,6 +17,7 @@
     background-color: #1E1B1F;
     border-radius: 20px;
     width: 900px;
+    z-index: 1;
 }
 
 .presetpage_container p {
@@ -314,7 +315,7 @@ select:focus::placeholder {
 }
 
 @media (max-width: 320px) {
-    .presetpage_container {
+    /*.presetpage_container {
         width: 300px;
-    }
+    }*/
 }

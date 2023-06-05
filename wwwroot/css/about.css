@@ -19,6 +19,7 @@
     font-size: 1.32rem;
     width: 1100px;
     text-align: justify;
+    z-index: 1;
 }
 
 .aboutpage_container h2 {
