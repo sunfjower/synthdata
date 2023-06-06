@@ -19,6 +19,12 @@ function setSelectionOptions(element) {
         1: "ID",
         2: "Name",
         3: "Surname",
+        4: "Full name",
+        5: "Email",
+        6: "Username",
+        7: "Phone number",
+        8: "Company name",
+        9: "Password",
     };
 
     for (let i = 0; i <= Object.keys(Categories).length; i++) {
