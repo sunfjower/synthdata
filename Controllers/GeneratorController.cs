@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using MongoDB.Bson;
 using MultipleDataGenerator.Services;
 using Newtonsoft.Json;
+using System.Reflection.Metadata.Ecma335;
 
 namespace MultipleDataGenerator.Controllers
 {
@@ -22,17 +24,22 @@ namespace MultipleDataGenerator.Controllers
         [HttpGet]
         public async Task<ActionResult> GetAll(string names, string types, string format)
         {
-            /* TEMPORARY: list for query 
-            var fieldTypes = new List<string> { "Name", "Name" };
-            var fieldNames = new List<string> { "Title Name", "Title Name2" };*/
-
             var fieldNames = names.Split(',').ToList();
             var fieldTypes = types.Split(',').ToList();
 
+            ValidationResponse validationResponse = ValidateInputData(fieldNames, fieldTypes, format);
+
+            if (!validationResponse.Success)
+            {
+               return BadRequest(new { message = validationResponse.Message });
+            }
+
             //  TODO: Reprocess funtion
-            for (int i = 0; i < fieldNames.Count; i++)
+
+            for (int i = 0; i < fieldNames.Count && i < fieldTypes.Count; i++)
             {
                 fieldNames[i] = fieldNames[i].Replace(" ", "_");
+                fieldTypes[i] = fieldTypes[i].Replace(" ", "");
             }
 
             var data = await _dataGeneratorService.GetAsync(fieldNames, fieldTypes);

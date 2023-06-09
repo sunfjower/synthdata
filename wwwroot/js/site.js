@@ -19,11 +19,11 @@ function setSelectionOptions(element) {
         1: "ID",
         2: "Name",
         3: "Surname",
-        4: "Full name",
+        4: "Full Name",
         5: "Email",
         6: "Username",
-        7: "Phone number",
-        8: "Company name",
+        7: "Phone",
+        8: "Company Name",
         9: "Password",
     };
 

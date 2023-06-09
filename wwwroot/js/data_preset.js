@@ -56,9 +56,23 @@ function requestDataGeneration() {
 
             document.body.removeChild(link);
         },
-        error: function (error) {
-            alert("Something goin wrong:" + error.fail);
-            console.log(error);
+        xhrFields: {
+            responseType: 'text/plain'
+        },
+        error: function (xhr, status, error) {
+
+            //read like JSON
+
+            console.log(xhr.responseText);
+            var err = JSON.parse(xhr.responseText);
+            alert(err.message);
+
+/*            msg = Blob.text(xhr.responseText);
+
+            console.log(msg);
+
+            
+*/
         }
     });
 }
