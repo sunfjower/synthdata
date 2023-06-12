@@ -1,4 +1,15 @@
-﻿section#presetpage_content {
+﻿/* Hide Input Number Arrows Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+/*Hide Input Number Arrows Firefox */
+section#presetpage_content {
     height: calc(100vh - 60px);
     display: flex;
     flex-direction: column;
@@ -63,6 +74,14 @@ input:focus::placeholder {
     color: transparent;
 }
 
+input#totalRows {
+    text-align: right;
+}
+
+input#totalRows::placeholder {
+    text-align: left;
+}
+
 select {
     border: none;
     padding: 12px;
@@ -84,6 +103,16 @@ select:focus {
 
 select:focus::placeholder {
     color: transparent;
+}
+
+/*VALIDATION*/
+
+.needs_validation {
+    border: 2px solid #D9305F;
+}
+
+.needs_validation:focus {
+    border: 2px solid #F5EBFF
 }
 
 /*BUTTONS*/

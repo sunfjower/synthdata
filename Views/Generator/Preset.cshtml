@@ -12,7 +12,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><input name="fieldName" placeholder="Your field name" required></td>
+                    <td><input name="fieldName" placeholder="Your field name"></td>
                     <td>
                         <select name="fieldType"></select>
                     </td>
@@ -21,7 +21,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><input name="fieldName" placeholder="Your field name" required></td>
+                    <td><input name="fieldName" placeholder="Your field name"></td>
                     <td>
                         <select name="fieldType"></select>
                     </td>
@@ -44,7 +44,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><input id="totalRows" required></td>
+                    <td><input id="totalRows" type="number" pattern="[0-9]" placeholder="Maximum 1000 rows"></td>
                     <td>
                         <select id="fileFormat">
                             <option>Excel</option>
@@ -57,7 +57,7 @@
         </table>
 
         <div>
-            <button id="generate" class="generate_btn" onclick="requestDataGeneration(this)">Generate</button>
+            <button id="generate" class="generate_btn" onclick="requestDataGeneration()">Generate</button>
         </div>
     </div>
 </section>
