@@ -104,18 +104,20 @@ header {
 .dropdown_menu {
     display: none;
     position: absolute;
+    z-index: 3;
     top: 120px;
     height: 0px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: invert(80%);
+    background-color: #363138;
+    /*    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);*/
     border-radius: 15px;
     overflow: hidden;
     transition: height .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.dropdown_menu.open {
-    height: 485px;
-}
+    .dropdown_menu.open {
+        height: 240px;
+    }
 
 .dropdown_menu li {
     height: 80px;
@@ -131,7 +133,6 @@ header {
     font-size: 1.6rem;
     transition: all 0.5s ease 0s;
     background: rgba(255, 255, 255, 0);
-    backdrop-filter: invert(80%);
     border: none;
     outline: none;
     cursor: pointer;
