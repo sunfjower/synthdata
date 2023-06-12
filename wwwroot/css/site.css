@@ -77,11 +77,15 @@ header {
     font-weight: 300;
     transition: all 0.3s ease 0s;
     list-style: none;
-    text-decoration: none;
+    text-decoration: none;  
 }
 
 .nav_links li a:hover {
     color: #F5EBFF;
+}
+
+.active_link {
+    color: #FFFFFF !important;
 }
 
 .toggle_btn {

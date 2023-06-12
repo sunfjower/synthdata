@@ -1,7 +1,15 @@
 ﻿$(document).ready(function() {
-    // New field
+  
     let select = document.getElementsByName("fieldType");
     setSelectionOptions(select);
+
+    $("a").each(function () {
+        if (this.href == window.location.href) {
+            console.log(this);
+            $(this).addClass("active_link");
+            console.log(this);
+        }
+    });
 });
 
 function toggleMenuClick() {
