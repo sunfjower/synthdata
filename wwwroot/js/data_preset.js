@@ -22,10 +22,84 @@
     return obj;
 }
 
+function validateForm() {
+    let isValid = true;
+    let inputs = document.getElementsByName("fieldName");
+    let selects = document.getElementsByName("fieldType");
+    let fileFormat = document.getElementById("fileFormat");
+    let totalRows = document.getElementById("totalRows");
+
+    if (inputs.count != selects.count) {
+        isValid = false;
+        return isValid;
+    }
+
+    for (i = 0; i < inputs.length; i++) {
+
+        // 1. Field Name validation
+        if (inputs[i].value == "" && inputs[i].classList.contains("needs_validation")) {
+            isValid = false;
+        }
+        else if (inputs[i].value == "" && !inputs[i].classList.contains("needs_validation")) {
+            inputs[i].classList.add("needs_validation");
+            isValid = false;
+        }
+        else if (inputs[i].value != "" && inputs[i].classList.contains("needs_validation")) {
+            inputs[i].classList.remove("needs_validation");
+        }
+
+        // 2. Field Type validation
+        if (selects[i].value == "" || selects[i].value == "--Select--" && selects[i].classList.contains("needs_validation")) {
+            isValid = false;
+        }
+        else if (selects[i].value == "" || selects[i].value == "--Select--" && !selects[i].classList.contains("needs_validation")) {
+            selects[i].classList.add("needs_validation");
+            isValid = false;
+        }
+        else if (selects[i].value != "" || selects[i].value != "--Select--" && selects[i].classList.contains("needs_validation")) {
+            selects[i].classList.remove("needs_validation");
+        }
+
+        // 3. Output Format validation
+        if (fileFormat == "" && !fileFormat.classList.contains("needs_validation")) {
+            fileFormat.classList.add("needs_validation");
+            isValid = false;
+        }
+        else if (fileFormat != "" && fileFormat.classList.contains("needs_validation")) {
+            fileFormat.classList.remove("needs_validation");
+        }
+        else if (fileFormat == "" && fileFormat.classList.contains("needs_validation")) {
+            isValid = false;
+        }
+
+        /*// 4. Total Rows validation 
+        if (totalRows == null && !totalRows.classList.contains("needs_validation")) {
+            totalRows.classList.add("needs_validation");
+            isValid = false;
+        }
+        else if (totalRows != null && totalRows > 1000 && totalRows.classList.contains("needs_validation")) {
+            totalRows.classList.remove("needs_validation");
+        }
+        else if (totalRows == null && totalRows.classList.contains("needs_validation")) {
+            isValid = false;
+        }
+        else if (totalRows > 1000) {
+            totalRows.classList.add("needs_validation");
+            isValid = false;
+        }*/
+    }
+
+    return isValid;
+}
+
 function requestDataGeneration() {
     let bodyData = collectBodyData();
 
-    console.log(bodyData);
+    if (!validateForm()) {
+        alert("We're sorry, but the form cannot be submitted with empty fields. " +
+            "Please fill in all the required, red border fields before proceeding.");
+        return;
+    }
 
     $.ajax({
         type: "GET",
