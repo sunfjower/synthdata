@@ -80,7 +80,7 @@ function validateForm() {
         totalRows.classList.add("needs_validation");
         isValid = false;
     }
-    else if (totalRows.value > 1 && totalRows.value < 1000 && totalRows.classList.contains("needs_validation")) {
+    else if (totalRows.value > 0 && totalRows.value < 1001 && totalRows.classList.contains("needs_validation")) {
         totalRows.classList.remove("needs_validation");
     }
     else if (totalRows.value < 1 || totalRows.value > 1000 && totalRows.classList.contains("needs_validation")) {
@@ -96,7 +96,7 @@ function requestDataGeneration() {
     if (!validateForm()) {
         alert("We're sorry, but the form cannot be submitted with empty fields. " +
             "Please fill in all the required, red border fields before proceeding.\n\n" +
-            "Please take into consideration that the maximum number of rows should range from 1 to 1000.");
+            "Please take into consideration that the number of rows should range from 1 to 1000.");
         return;
     }
 
