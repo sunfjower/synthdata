@@ -5,9 +5,7 @@
 
     $("a").each(function () {
         if (this.href == window.location.href) {
-            console.log(this);
             $(this).addClass("active_link");
-            console.log(this);
         }
     });
 });
@@ -97,6 +95,7 @@ function addTableField(element) {
     input.placeholder = "Your field name";
     //New field
     input.name = "fieldName";
+    input.maxLength = "50";
     addSpan.innerHTML = "Add";
     addButton.append(addSpan);
     addButton.classList += "add_btn";
