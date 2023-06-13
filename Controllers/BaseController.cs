@@ -42,9 +42,11 @@ namespace MultipleDataGenerator.Controllers
             return shuffledList;
         }
 
-        protected ValidationResponse ValidateInputData(List<string> fieldNames, List<string> fieldTypes, string exportFormat)
+        protected ValidationResponse ValidateInputData(List<string> fieldNames, List<string> fieldTypes, string exportFormat, string rowsCount)
         {
-            if(fieldNames.Count != fieldTypes.Count)
+            int totalRows;
+
+            if (fieldNames.Count != fieldTypes.Count)
             {
                 return new ValidationResponse("Oops! Looks like you have a mismatch between the \"Field Name\" and \"Field Type\" fields amount. " +
                     "Please refresh the page and try again", false);
@@ -81,7 +83,7 @@ namespace MultipleDataGenerator.Controllers
             }
 
             // 3. Export format validation
-            if (exportFormat.IsNullOrEmpty()) 
+            if (exportFormat.IsNullOrEmpty())
             {
                 return new ValidationResponse("Oops! Looks like you missed some required information. " +
                     "Please fill in \"Output Format\" field and try again.", false);
@@ -90,6 +92,23 @@ namespace MultipleDataGenerator.Controllers
             {
                 return new ValidationResponse("Oops! Looks like the data type provided is not valid for \"Output Format\" field. " +
                     "Please make sure you are entering the correct data type and try again.", false);
+            }
+
+            // 4. Total rows validation
+            try
+            {
+                totalRows = Int16.Parse(rowsCount);
+            }
+            catch (FormatException e)
+            {
+                return new ValidationResponse($"Oops! Looks like {e.Message.ToLower()} " +
+                    $"Please take into consideration that the \"Total Rows\" field should contain numeric format.", false);
+            }
+
+            if (totalRows < 1 || totalRows > 1000)
+            {
+                return new ValidationResponse("Oops! Looks like the \"Total Rows\" field contains an incorrect numeric range. " +
+                    "Please take into consideration that the number of rows should range from 1 to 1000.", false);
             }
 
             return new ValidationResponse("Ok", true);

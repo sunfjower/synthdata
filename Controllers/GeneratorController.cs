@@ -22,12 +22,12 @@ namespace MultipleDataGenerator.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetAll(string names, string types, string format)
+        public async Task<ActionResult> GetAll(string names, string types, string format, string rowsCount)
         {
             var fieldNames = names.Split(',').ToList();
             var fieldTypes = types.Split(',').ToList();
 
-            ValidationResponse validationResponse = ValidateInputData(fieldNames, fieldTypes, format);
+            ValidationResponse validationResponse = ValidateInputData(fieldNames, fieldTypes, format, rowsCount);
 
             if (!validationResponse.Success)
             {
@@ -42,7 +42,7 @@ namespace MultipleDataGenerator.Controllers
                 fieldTypes[i] = fieldTypes[i].Replace(" ", "");
             }
 
-            var data = await _dataGeneratorService.GetAsync(fieldNames, fieldTypes);
+            var data = await _dataGeneratorService.GetAsync(fieldNames, fieldTypes, Int16.Parse(rowsCount));
 
             //  TODO: If data null "Return message for user about nulleble data."
             var result = data.ConvertAll(BsonTypeMapper.MapToDotNetValue);

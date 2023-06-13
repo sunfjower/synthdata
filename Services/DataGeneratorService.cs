@@ -32,7 +32,7 @@ namespace MultipleDataGenerator.Services
             //return await _fieldsCollection.Find(FilterDefinition<BsonDocument>.Empty).Project(Builders<BsonDocument>.Projection.Include("Name").Exclude("_id")).First().ToListAsync();
         }
 
-        public async Task<List<BsonDocument>?> GetAsync(List<string> fieldNames, List<string> fieldTypes)
+        public async Task<List<BsonDocument>?> GetAsync(List<string> fieldNames, List<string> fieldTypes, int totalRows)
         {
             //  TODO: If input data null => return nothing.
 
@@ -60,7 +60,7 @@ namespace MultipleDataGenerator.Services
 
             //string customProjection = "{_id:0, UserName:'$Name'}";
 
-            var result = await _fieldsCollection.Find(filter).Project(projection).ToListAsync();
+            var result = await _fieldsCollection.Find(filter).Project(projection).Limit(totalRows).ToListAsync();
 
             return result;
         }
