@@ -13,6 +13,11 @@ main {
     margin-top: 77px;
 }
 
+footer {
+    margin-top: 60px;
+    height: 20px;
+}
+
 .background {
     width: 100%;
     height: 100%;
