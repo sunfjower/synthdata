@@ -12,9 +12,12 @@
     padding-right: 50px;
     padding-left: 50px;
     padding-bottom: 50px;
-    border: solid;
-    border-color: #393340;
+    /*border: solid;*/
+    /*border-color: #393340;*/
     /*background-color: #1E1B1F;*/
+    background: rgb(74, 69, 69, 0.35);
+    /*background: rgba(255, 255, 255, 0.05);*/
+    backdrop-filter: blur(40px);
     border-radius: 20px;
     font-size: 1.32rem;
     width: 1100px;
