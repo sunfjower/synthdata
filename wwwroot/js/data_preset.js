@@ -15,7 +15,7 @@
     let jsonBodyData = JSON.stringify({
         names: fieldNameArray.join(),
         types: fieldTypeArray.join(),
-        format: fileFormat[0].value,
+        format: fileFormat.value,
         rowsCount: totalRows.value,
     });
 
@@ -100,52 +100,45 @@ function requestDataGeneration() {
         return;
     }
 
-    $.ajax({
-        type: "GET",
-        url: "/Generator/GetAll",
-        data: bodyData,
-        xhrFields: {
-            responseType: 'blob'
-        },
-        success: function (data) {
-            console.log(data);
-
-            var link = document.createElement('a');
-            var url = URL.createObjectURL(data);
-
-            if (data.type === "text/plain") {
-                link.setAttribute('download', "synthdata.json");
+    fetch('/Generator/GetAll?' + new URLSearchParams(bodyData), {
+        method: 'GET',
+    })
+        .then(function (response) {
+            if (!response.ok) {
+                return response.text();
             }
             else {
-                link.setAttribute('download', "synthdata");
+                return response.blob();
             }
+        })
+        .then(function (data) {
+            if (data instanceof Blob) {
+                /*console.log(data);*/
 
-            link.setAttribute('href', url);
-            link.style.display = 'none';
+                var link = document.createElement('a');
+                var url = URL.createObjectURL(data);
 
-            document.body.appendChild(link);
+                if (data.type === "text/plain") {
+                    link.setAttribute('download', "synthdata.json");
+                }
+                else {
+                    link.setAttribute('download', "synthdata");
+                }
 
-            link.click();
+                link.setAttribute('href', url);
+                link.style.display = 'none';
 
-            document.body.removeChild(link);
-        },
-        xhrFields: {
-            responseType: 'text/plain'
-        },
-        error: function (xhr, status, error) {
+                document.body.appendChild(link);
 
-            //read like JSON
+                link.click();
 
-            console.log(xhr.responseText);
-            var err = JSON.parse(xhr.responseText);
-            alert(err.message);
-
-/*            msg = Blob.text(xhr.responseText);
-
-            console.log(msg);
-
-            
-*/
-        }
-    });
+                document.body.removeChild(link);
+            }
+            else {
+                alert(data);
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 }

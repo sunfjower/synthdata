@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Bson;
 using MultipleDataGenerator.Services;
 using Newtonsoft.Json;
+using System.Net;
 using System.Reflection.Metadata.Ecma335;
+using System.Text;
 
 namespace MultipleDataGenerator.Controllers
 {
@@ -22,7 +25,7 @@ namespace MultipleDataGenerator.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetAll(string names, string types, string format, string rowsCount)
+        public async Task<ActionResult> GetAll([FromQuery] string names, [FromQuery] string types, [FromQuery] string format, [FromQuery] string rowsCount)
         {
             var fieldNames = names.Split(',').ToList();
             var fieldTypes = types.Split(',').ToList();
@@ -31,7 +34,7 @@ namespace MultipleDataGenerator.Controllers
 
             if (!validationResponse.Success)
             {
-               return BadRequest(new { message = validationResponse.Message });
+                return BadRequest(validationResponse.Message);
             }
 
             //  TODO: Reprocess funtion
