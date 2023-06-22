@@ -16,3 +16,5 @@ lib/
 *.sln
 *.csproj
 *.csproj.user
+Dockerfile
+.dockerignore
