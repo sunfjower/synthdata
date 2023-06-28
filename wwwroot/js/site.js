@@ -22,6 +22,16 @@ function toggleMenuClick() {
 
 function setSelectionOptions(element) {
     const Categories = {
+        1: "Name",
+        2: "Surname",
+        3: "Full Name",
+        4: "Email",
+        5: "Username",
+        6: "Phone",
+        7: "Company Name",
+        8: "Password",
+    };
+    /*const Categories = {
         1: "ID",
         2: "Name",
         3: "Surname",
@@ -31,7 +41,7 @@ function setSelectionOptions(element) {
         7: "Phone",
         8: "Company Name",
         9: "Password",
-    };
+    };*/
 
     for (let i = 0; i <= Object.keys(Categories).length; i++) {
         let option = document.createElement("option");

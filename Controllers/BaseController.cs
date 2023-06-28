@@ -15,7 +15,6 @@ namespace MultipleDataGenerator.Controllers
     {
         enum FieldType
         {
-            ID,
             Name,
             Surname,
             FullName,
