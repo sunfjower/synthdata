@@ -13,8 +13,11 @@ lib/
 
 *.json
 *.ico
+*.png
+*.svg
 *.sln
 *.csproj
 *.csproj.user
 Dockerfile
 .dockerignore
+heroku.yml
