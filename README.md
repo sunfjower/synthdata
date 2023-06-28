@@ -21,7 +21,7 @@ you can enter the field name as \[User_Name\]).
 5. Format: Select the mock dataset output format, it can be JSON or CSV.
 6. Click Generate button for the download mock dataset.
 
-To explore more information and features, please visit the following page: [link]()<br><br>
+To explore more information and features, please visit the following page: [About](https://synth-data.tech/Home/About)<br><br>
 
 ## License
 
