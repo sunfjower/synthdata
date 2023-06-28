@@ -31,7 +31,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information. <br><
 
 My LinkdIn: [Dmytro Peremiena](https://www.linkedin.com/in/dmitro-peremena/)
 
-Synthdata page: [synthdata.xyz](https://synth-data.tech/)<br><br>
+Synthdata page: [synth-data.tech](https://synth-data.tech/)<br><br>
 
 
 
