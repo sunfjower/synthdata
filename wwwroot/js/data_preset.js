@@ -26,6 +26,7 @@
 
 function validateForm() {
     let isValid = true;
+    let idCounter = 0;
     let inputs = document.getElementsByName("fieldName");
     let selects = document.getElementsByName("fieldType");
     let fileFormat = document.getElementById("fileFormat");
@@ -61,9 +62,18 @@ function validateForm() {
         else if (selects[i].value != "" || selects[i].value != "--Select--" && selects[i].classList.contains("needs_validation")) {
             selects[i].classList.remove("needs_validation");
         }
+
+        // 3. Counts of ID types.
+        if (selects[i].value == "ID") {
+            idCounter++;
+        }
+
+        if (idCounter > 1) {
+            isValid = false;
+        }
     }
 
-    // 3. Output Format validation
+    // 4. Output Format validation
     if (fileFormat == "" && !fileFormat.classList.contains("needs_validation")) {
         fileFormat.classList.add("needs_validation");
         isValid = false;
@@ -75,7 +85,7 @@ function validateForm() {
         isValid = false;
     }
 
-    // 4. Total Rows validation
+    // 5. Total Rows validation
     if (totalRows.value < 1 || totalRows.value > 1000) {
         totalRows.classList.add("needs_validation");
         isValid = false;
@@ -94,9 +104,10 @@ function requestDataGeneration() {
     let bodyData = collectBodyData();
 
     if (!validateForm()) {
-        alert("We're sorry, but the form cannot be submitted with empty fields. " +
-            "Please fill in all the required, red border fields before proceeding.\n\n" +
-            "Please take into consideration that the number of rows should range from 1 to 1000.");
+        alert("We're sorry, but the form cannot be submitted, here is few tips to help you troubleshoot the issue:\n\n" +
+            "1. Please fill in all the required, red border fields before proceeding.\n" +
+            "2. Please ensure that you select only one \"ID\" data type in \"Field Type\" section.\n" +
+            "3. Please take into consideration that the number of rows should range from 1 to 1000.\n");
         return;
     }
 
