@@ -6,8 +6,6 @@ using Newtonsoft.Json;
 using System.Text;
 using MultipleDataGenerator.Services;
 using Microsoft.IdentityModel.Tokens;
-using System.Linq.Expressions;
-using Microsoft.SqlServer.Server;
 
 namespace MultipleDataGenerator.Controllers
 {
@@ -15,6 +13,7 @@ namespace MultipleDataGenerator.Controllers
     {
         enum FieldType
         {
+            ID,
             Name,
             Surname,
             FullName,
@@ -44,6 +43,7 @@ namespace MultipleDataGenerator.Controllers
         protected ValidationResponse ValidateInputData(List<string> fieldNames, List<string> fieldTypes, string exportFormat, string rowsCount)
         {
             int totalRows;
+            int idCounter = 0;
 
             if (fieldNames.Count != fieldTypes.Count)
             {
@@ -78,6 +78,16 @@ namespace MultipleDataGenerator.Controllers
                 {
                     return new ValidationResponse("Oops! Looks like the data type provided in one of \"Field Type\" fileds is not valid for this field. " +
                         "Please make sure you are entering the correct data type and try again.", false);
+                }
+                else if (fieldType.Contains("ID"))
+                {
+                    idCounter++;
+                }
+
+                if (idCounter > 1)
+                {
+                    return new ValidationResponse("\"Oops! Looks like you have duplicate entries for the \"Field Tepe\" fields. " +
+                        "You must use \"ID\" data type as unique. Please make sure you are used \"ID\" only once and try again.", false);
                 }
             }
 
