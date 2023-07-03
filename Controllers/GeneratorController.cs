@@ -50,8 +50,6 @@ namespace MultipleDataGenerator.Controllers
             //  TODO: If data null "Return message for user about nulleble data."
             var result = data.ConvertAll(BsonTypeMapper.MapToDotNetValue);
 
-            result = ShuffleList(result);
-
             var jsonResult = JsonConvert.SerializeObject(result, Formatting.Indented);
 
             switch (format)

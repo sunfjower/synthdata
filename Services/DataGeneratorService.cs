@@ -7,6 +7,7 @@ using MultipleDataGenerator.Models;
 using System.Security.Cryptography;
 using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
+using System.Collections;
 
 namespace MultipleDataGenerator.Services
 {
@@ -20,49 +21,61 @@ namespace MultipleDataGenerator.Services
             var mongoDatabase = mongoClient.GetDatabase(dataGeneratorDatabaseSettings.Value.DatabaseName);
             _fieldsCollection = mongoDatabase.GetCollection<BsonDocument>(dataGeneratorDatabaseSettings.Value.EnglishCollectionName);
         }
-        
-        public async Task<List<BsonDocument>> GetAsync(string firstParam, string secondParam) 
-        {
-            var filter = Builders<BsonDocument>.Filter.Empty;
-            var projection = Builders<BsonDocument>.Projection.Include(firstParam).Include(secondParam).Include(secondParam).Exclude("_id");
-
-            return await _fieldsCollection.Find(filter).Project(projection).ToListAsync();
-
-            //return await _fieldsCollection.Find<BsonDocument>(filter).ToListAsync();
-            //return await _fieldsCollection.Find(FilterDefinition<BsonDocument>.Empty).Project(Builders<BsonDocument>.Projection.Include("Name").Exclude("_id")).First().ToListAsync();
-        }
 
         public async Task<List<BsonDocument>?> GetAsync(List<string> fieldNames, List<string> fieldTypes, int totalRows)
         {
             //  TODO: If input data null => return nothing.
 
-            /*if (fieldNames.IsNullOrEmpty() || fieldTypes.IsNullOrEmpty()) 
-            {
-                return null;
-            
-            }*/
-
             var filter = Builders<BsonDocument>.Filter.Empty;
 
-            //  TODO: Make separate method for this functionality.
-            //  START=>
+            string projection = CreateProjection(fieldNames, fieldTypes);
+
+            int idTypePosition = fieldTypes.IndexOf("ID");
+
+            var result = await _fieldsCollection.Find(filter).Project(projection).Limit(totalRows).ToListAsync();
+
+            result = ShuffleList(result);
+
+            if (idTypePosition >= 0) 
+            {
+                for (int i = 0; i < result.Count; i++)
+                {
+                    int id = i;
+                    result[i].InsertAt(idTypePosition, new BsonElement(fieldNames[idTypePosition], (++id).ToString()));
+                }
+            }
+
+            return result;
+        }
+
+        private string CreateProjection(List<string> fieldNames, List<string> fieldTypes)
+        {
             var namesAndTypes = fieldNames.Zip(fieldTypes, (n, t) => new { Name = n, Type = t });
 
             string projection = "{_id:0";
 
             foreach (var field in namesAndTypes)
             {
-                projection += $", {field.Name}:'${field.Type}'"; 
+                if (field.Type != "ID")
+                {
+                    projection += $", {field.Name}:'${field.Type}'";
+                }
             }
 
             projection += "}";
-            //  END
 
             //string customProjection = "{_id:0, UserName:'$Name'}";
 
-            var result = await _fieldsCollection.Find(filter).Project(projection).Limit(totalRows).ToListAsync();
+            return projection;
+        }
 
-            return result;
+        private List<BsonDocument> ShuffleList(List<BsonDocument> listToShuffle)
+        {
+            //https://code-maze.com/csharp-randomize-list/
+
+            var _rand = new Random();
+            var shuffledList = listToShuffle.OrderBy(_ => _rand.Next()).ToList();
+            return shuffledList;
         }
     }
 }

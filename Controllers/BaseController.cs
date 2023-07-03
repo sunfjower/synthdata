@@ -31,15 +31,6 @@ namespace MultipleDataGenerator.Controllers
             CSV,
         }
 
-        protected List<object> ShuffleList(List<object> listToShuffle)
-        {
-            //https://code-maze.com/csharp-randomize-list/
-
-            var _rand = new Random();
-            var shuffledList = listToShuffle.OrderBy(_ => _rand.Next()).ToList();
-            return shuffledList;
-        }
-
         protected ValidationResponse ValidateInputData(List<string> fieldNames, List<string> fieldTypes, string exportFormat, string rowsCount)
         {
             int totalRows;
