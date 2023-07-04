@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System.Text;
 using MultipleDataGenerator.Services;
 using Microsoft.IdentityModel.Tokens;
+using System.Collections.Generic;
 
 namespace MultipleDataGenerator.Controllers
 {
@@ -35,11 +36,28 @@ namespace MultipleDataGenerator.Controllers
         {
             int totalRows;
             int idCounter = 0;
+            var distinctList = fieldNames.Distinct().ToList();
 
             if (fieldNames.Count != fieldTypes.Count)
             {
                 return new ValidationResponse("Oops! Looks like you have a mismatch between the \"Field Name\" and \"Field Type\" fields amount. " +
                     "Please refresh the page and try again", false);
+            }
+
+            if(fieldNames.Count != distinctList.Count)
+            {
+                return new ValidationResponse("Oops! Looks like you have duplicates in some of the \"Field Name\" fields. " +
+                    "Please make sure that you have only unique names in \"Field Name\" fields and try again.", false);
+            }
+
+            //  TODO: Reprocess funtion Check unwanted characters
+            for (int i = 0; i < fieldNames.Count && i < fieldTypes.Count; i++)
+            {
+                fieldNames[i] = fieldNames[i].Replace(" ", "_");
+                fieldNames[i] = fieldNames[i].Replace("\"", "");
+                fieldNames[i] = fieldNames[i].Replace("\'", "");
+                fieldNames[i] = fieldNames[i].Replace("`", "");
+                fieldTypes[i] = fieldTypes[i].Replace(" ", "");
             }
 
             // 1. Field names validation

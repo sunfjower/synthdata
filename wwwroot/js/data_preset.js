@@ -24,6 +24,16 @@
     return obj;
 }
 
+function checkIfDuplicateExists(element) {
+    let fieldNameArray = []; 
+
+    for (let i = 0; i < element.length; i++) {
+        fieldNameArray.push(element[i].value);
+    }
+
+    return new Set(fieldNameArray).size !== fieldNameArray.length
+}
+
 function validateForm() {
     let isValid = true;
     let idCounter = 0;
@@ -33,6 +43,11 @@ function validateForm() {
     let totalRows = document.getElementById("totalRows");
 
     if (inputs.count != selects.count) {
+        isValid = false;
+        return isValid;
+    }
+
+    if (checkIfDuplicateExists(inputs)) {
         isValid = false;
         return isValid;
     }
@@ -107,7 +122,8 @@ function requestDataGeneration() {
         alert("We're sorry, but the form cannot be submitted, here is few tips to help you troubleshoot the issue:\n\n" +
             "1. Please fill in all the required, red border fields before proceeding.\n" +
             "2. Please ensure that you select only one \"ID\" data type in \"Field Type\" section.\n" +
-            "3. Please take into consideration that the number of rows should range from 1 to 1000.\n");
+            "3. Please make sure that you have only unique names in \"Field Name\" section\n" +
+            "4. Please take into consideration that the number of rows should range from 1 to 1000.\n");
         return;
     }
 
