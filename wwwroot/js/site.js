@@ -8,7 +8,25 @@
             $(this).addClass("active_link");
         }
     });
+
+    let inputs = document.getElementsByName("fieldName");
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener("input", function (e) {
+            avoidUnwantedCharacters(inputs[i]);
+        });
+    }
 });
+
+function avoidUnwantedCharacters(element)
+{
+    let allowedChars = /[^a-z0-9 _]/gi;
+    let inputValue = $(element).val();
+
+    if (allowedChars.test(inputValue)) {
+        $(element).val(inputValue.replace(allowedChars, ''));
+    }
+    //$(element).setSelectionRange(c, c);
+}
 
 function toggleMenuClick() {
     let toggleBtnIcon = document.querySelector('.toggle_btn i')
@@ -90,12 +108,13 @@ function addTableField(element) {
     let fourthCell = newRow.insertCell(3);
 
     select = setSelectionOptions(select);
-    //New field
     select.name = "fieldType";
     input.placeholder = "Your field name";
-    //New field
     input.name = "fieldName";
     input.maxLength = "50";
+    input.addEventListener("input", function (e) {
+        avoidUnwantedCharacters(this);
+    });
     addSpan.innerHTML = "Add";
     addButton.append(addSpan);
     addButton.classList += "add_btn";
