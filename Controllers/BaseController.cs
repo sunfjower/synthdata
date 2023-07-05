@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 using System.Text;
 using MultipleDataGenerator.Services;
 using Microsoft.IdentityModel.Tokens;
-using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace MultipleDataGenerator.Controllers
 {
@@ -38,29 +38,27 @@ namespace MultipleDataGenerator.Controllers
             int idCounter = 0;
             var distinctList = fieldNames.Distinct().ToList();
 
+            // Validate the equivalence of field names and types.
             if (fieldNames.Count != fieldTypes.Count)
             {
                 return new ValidationResponse("Oops! Looks like you have a mismatch between the \"Field Name\" and \"Field Type\" fields amount. " +
                     "Please refresh the page and try again", false);
             }
 
+            // Validate field names duplicates. 
             if(fieldNames.Count != distinctList.Count)
             {
                 return new ValidationResponse("Oops! Looks like you have duplicates in some of the \"Field Name\" fields. " +
                     "Please make sure that you have only unique names in \"Field Name\" fields and try again.", false);
             }
 
-            //  TODO: Reprocess funtion Check unwanted characters
+            // Replace unwanted characters.
             for (int i = 0; i < fieldNames.Count && i < fieldTypes.Count; i++)
             {
-                fieldNames[i] = fieldNames[i].Replace(" ", "_");
-                fieldNames[i] = fieldNames[i].Replace("\"", "");
-                fieldNames[i] = fieldNames[i].Replace("\'", "");
-                fieldNames[i] = fieldNames[i].Replace("`", "");
-                fieldTypes[i] = fieldTypes[i].Replace(" ", "");
+                fieldNames[i] = Regex.Replace(fieldNames[i], @"[^0-9a-zA-Z_]+", "");
             }
 
-            // 1. Field names validation
+            // 1. Field names validation.
             foreach (var fieldName in fieldNames)
             {
                 if (fieldName.IsNullOrEmpty())
@@ -75,7 +73,7 @@ namespace MultipleDataGenerator.Controllers
                 }
             }
 
-            // 2. Field types validation
+            // 2. Field types validation.
             foreach (var fieldType in fieldTypes)
             {
                 if (fieldType.IsNullOrEmpty() || fieldType == "--Select--")
@@ -100,7 +98,7 @@ namespace MultipleDataGenerator.Controllers
                 }
             }
 
-            // 3. Export format validation
+            // 3. Export format validation.
             if (exportFormat.IsNullOrEmpty())
             {
                 return new ValidationResponse("Oops! Looks like you missed some required information. " +
@@ -112,7 +110,7 @@ namespace MultipleDataGenerator.Controllers
                     "Please make sure you are entering the correct data type and try again.", false);
             }
 
-            // 4. Total rows validation
+            // 4. Total rows validation.
             try
             {
                 totalRows = Int16.Parse(rowsCount);

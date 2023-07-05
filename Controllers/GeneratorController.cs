@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System.Net;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace MultipleDataGenerator.Controllers
 {
@@ -29,14 +30,6 @@ namespace MultipleDataGenerator.Controllers
         {
             var fieldNames = names.Split(',').ToList();
             var fieldTypes = types.Split(',').ToList();
-
-            //  TODO: Reprocess funtion
-
-            for (int i = 0; i < fieldNames.Count && i < fieldTypes.Count; i++)
-            {
-                fieldNames[i] = fieldNames[i].Replace(" ", "_");
-                fieldTypes[i] = fieldTypes[i].Replace(" ", "");
-            }
 
             ValidationResponse validationResponse = ValidateInputData(fieldNames, fieldTypes, format, rowsCount);
 
