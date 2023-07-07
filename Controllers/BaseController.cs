@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 using System.Text;
 using MultipleDataGenerator.Services;
 using Microsoft.IdentityModel.Tokens;
-using System.Text.RegularExpressions;
+using OfficeOpenXml.Table;
 
 namespace MultipleDataGenerator.Controllers
 {
@@ -36,7 +36,8 @@ namespace MultipleDataGenerator.Controllers
         {
             int totalRows;
             int idCounter = 0;
-            var distinctList = fieldNames.Distinct().ToList();
+            var lowerCaseList = fieldNames.ConvertAll(x => x.ToLower());
+            var distinctList = lowerCaseList.Distinct().ToList();
 
             // Validate the equivalence of field names and types.
             if (fieldNames.Count != fieldTypes.Count)
@@ -50,12 +51,6 @@ namespace MultipleDataGenerator.Controllers
             {
                 return new ValidationResponse("Oops! Looks like you have duplicates in some of the \"Field Name\" fields. " +
                     "Please make sure that you have only unique names in \"Field Name\" fields and try again.", false);
-            }
-
-            // Replace unwanted characters.
-            for (int i = 0; i < fieldNames.Count && i < fieldTypes.Count; i++)
-            {
-                fieldNames[i] = Regex.Replace(fieldNames[i], @"[^0-9a-zA-Z_]+", "");
             }
 
             // 1. Field names validation.
@@ -143,7 +138,8 @@ namespace MultipleDataGenerator.Controllers
                 workSheet.Cells.LoadFromCollection(jsonItems, c =>
                 {
                     c.PrintHeaders = true;
-                    c.HeaderParsingType = HeaderParsingTypes.UnderscoreToSpace;
+                    c.HeaderParsingType = HeaderParsingTypes.Preserve;
+                    c.TableStyle = TableStyles.Light1;
                 });
 
                 var excelData = package.GetAsByteArray();
@@ -176,7 +172,7 @@ namespace MultipleDataGenerator.Controllers
                 workSheet.Cells.LoadFromCollection(jsonItems, c =>
                 {
                     c.PrintHeaders = true;
-                    c.HeaderParsingType = HeaderParsingTypes.UnderscoreToSpace;
+                    c.HeaderParsingType = HeaderParsingTypes.Preserve;
                 });
 
                 var content = workSheet.Cells["A1:J10"].ToText();

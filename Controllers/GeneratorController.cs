@@ -31,6 +31,13 @@ namespace MultipleDataGenerator.Controllers
             var fieldNames = names.Split(',').ToList();
             var fieldTypes = types.Split(',').ToList();
 
+            // Replace unwanted characters.
+            for (int i = 0; i < fieldNames.Count && i < fieldTypes.Count; i++)
+            {
+                fieldTypes[i] = fieldTypes[i].Replace(" ", "");
+                fieldNames[i] = Regex.Replace(fieldNames[i], @"[^0-9a-zA-Z_]+", "");
+            }
+
             ValidationResponse validationResponse = ValidateInputData(fieldNames, fieldTypes, format, rowsCount);
 
             if (!validationResponse.Success)

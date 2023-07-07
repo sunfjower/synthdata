@@ -28,7 +28,8 @@ function checkIfDuplicateExists(element) {
     let fieldNameArray = []; 
 
     for (let i = 0; i < element.length; i++) {
-        fieldNameArray.push(element[i].value);
+        let loverCaseVal = String.prototype.toLowerCase.call(element[i].value);
+        fieldNameArray.push(loverCaseVal);
     }
 
     return new Set(fieldNameArray).size !== fieldNameArray.length
@@ -49,7 +50,6 @@ function validateForm() {
 
     if (checkIfDuplicateExists(inputs)) {
         isValid = false;
-        return isValid;
     }
 
     for (i = 0; i < inputs.length; i++) {
