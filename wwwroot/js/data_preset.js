@@ -25,7 +25,7 @@
 }
 
 function checkIfDuplicateExists(element) {
-    let fieldNameArray = []; 
+    let fieldNameArray = [];
 
     for (let i = 0; i < element.length; i++) {
         let loverCaseVal = String.prototype.toLowerCase.call(element[i].value);
